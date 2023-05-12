@@ -1,0 +1,27 @@
+:root {
+  --lb: rgba(0,0,0,.5);
+  --llb: rgba(0,0,0,.3);
+  --lllb: rgba(0,0,0,.1);
+  --defaultShadow: var(--llb) 2px 2px 5px 1px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+svg {
+  pointer-events: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+}
