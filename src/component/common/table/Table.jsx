@@ -20,22 +20,32 @@ const Table = ({ data, ...res }) => {
     const [tableBody, setTableBody] = useState(data.tableBody);
     const colWidthList = data.colWidthList;
     const sortableColumn = data.sortableColumn;
+    const [isOn, setOn] = useState(false);
+    
+    const orderByNumber = (a, b) => a.seq - b.seq
+    const orderByNumberDesc = (a, b) => b.seq - a.seq
     
     const onHandleClick = () => {
         console.log("clicked");
     }
-
-    const orderByNumber = (a, b) => a.seq - b.seq
-    const orderByNumberDesc = (a, b) => b.seq - a.seq
-
+    
     const handleSort = (e) => {
+        setOn(isOn => !isOn);
         const tg = e.target;
 
-        // tg.childNodes.style.transform = 'rotate(180deg)';
-
-        setTableBody(
-            [...tableBody.sort(orderByNumberDesc)]
-        );
+        if (!isOn) {
+            tg.lastChild.classList.add("on");
+            tg.lastChild.classList.remove("off");
+            setTableBody(
+                [...tableBody.sort(orderByNumberDesc)]
+            );
+        } else {
+            tg.lastChild.classList.add("off");
+            tg.lastChild.classList.remove("on");
+            setTableBody(
+                [...tableBody.sort(orderByNumber)]
+            );
+        } 
     }
 
     return (

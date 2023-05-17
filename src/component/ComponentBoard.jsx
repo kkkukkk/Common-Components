@@ -6,6 +6,7 @@ import Select from './common/Select';
 import Input from './common/Input';
 import Modal from './common/Modal';
 import Table from './common/table/Table';
+import MasonryBase from './common/masonry/MasonryBase';
 
 const optionData = [
     "옵션1",
@@ -32,7 +33,7 @@ const tableData = {
         "Y",
         "N",
         "N",
-        "Y"
+        "N",
     ],
     tableBody : [
         {
@@ -118,6 +119,11 @@ const ComponentBoard = () => {
                 width={"1000px"}
                 border={"1px solid rgba(0,0,0,.5)"}
             ></Table>
+            <MasonryBase
+                border={"1px solid var(--lb)"}
+                width={"80vw"}
+                minHeight={"500px"}
+            ></MasonryBase>
         </ThemeProvider>
     );
 };

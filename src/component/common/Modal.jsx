@@ -28,8 +28,8 @@ const DarkBackground = styled.div`
 
 const ModalBox = styled.div`
     position: relative;
-    width: ${props => props.width || "30%"};
-    height: ${props => props.height || "30%"};
+    width: ${props => props.width || "40%"};
+    height: ${props => props.height || "40%"};
     padding: 20px;
     background: white;
     border-radius: 5px;

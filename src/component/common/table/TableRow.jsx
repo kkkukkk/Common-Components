@@ -35,7 +35,7 @@ const TableRow = ({ data, colWidthList, sortableColumn, handleSort, headRow, onH
             >
                 {
                     data.map((item, idx) => (checkSortable(idx) ? 
-                        <TableColumn 
+                        <TableColumn
                             key={idx}
                             width={colWidthList[idx] || 100 / data.length + "%"}
                             cursor={"pointer"}

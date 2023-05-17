@@ -1,5 +1,23 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const upRotate = keyframes`
+    0% {
+        transform:rotate(0deg);
+    }
+    100% {
+        transform:rotate(180deg);
+    }
+`;
+
+const downRotate = keyframes`
+    0% {
+        transform:rotate(180deg);
+    }
+    100% {
+        transform:rotate(0deg);
+    }
+`;
 
 const SelectBox = styled.div`
     position: relative;
@@ -23,7 +41,8 @@ const SelectBox = styled.div`
         right: 5px;
         color: white;
         font-size: 16px;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) rotate(0deg);
+        transform: ${props => props.rotateDirection ? "translate(-50%, -50%) rotate(180deg)" : "" };
     }
 `;
 
@@ -67,10 +86,18 @@ const Select = ({optionData, ...res}) => {
     const [currentValue, setCurrentValue] = useState("선택");
     const [listOn, setListOn] = useState(false);
     const [showOptions, setShowOptions] = useState(false);
+    const [rotateDirection, setRotateDirection] = useState(false);
 
     const handleOnChangeSelectValue = (e) => {
         const { innerText } = e.target;
         setCurrentValue(innerText)
+    }
+
+    const onSelectClick = (e) => {
+        setShowOptions((prev) => !prev);
+        setListOn((prev) => !prev);
+        setRotateDirection(rotateDirection => !rotateDirection);
+        console.log(rotateDirection);
     }
 
     const optionList = optionData.map((data, idx) => (
@@ -86,12 +113,13 @@ const Select = ({optionData, ...res}) => {
         <SelectBox 
             listOn={listOn} 
             {...res} 
-            onClick={() => {
-                setShowOptions((prev) => !prev);
-                setListOn((prev) => !prev);
-            }}>
+            onClick={onSelectClick}
+            rotateDirection={rotateDirection}
+            >
             <Label>{currentValue}</Label>
-            <Options show={showOptions}>
+            <Options 
+                show={showOptions}
+            >
                 {optionList}
             </Options>
         </SelectBox>

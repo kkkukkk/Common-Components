@@ -1,5 +1,23 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const upRotate = keyframes`
+    0% {
+        transform:rotate(0deg);
+    }
+    100% {
+        transform:rotate(180deg);
+    }
+`;
+
+const downRotate = keyframes`
+    0% {
+        transform:rotate(180deg);
+    }
+    100% {
+        transform:rotate(0deg);
+    }
+`;
 
 const StyledTableSortButton = styled.button`
     display: inline-flex;
@@ -11,6 +29,14 @@ const StyledTableSortButton = styled.button`
     background: transparent;
     cursor: pointer;
     pointer-events: none;
+
+    &.on {
+        animation: ${upRotate} .3s linear forwards;
+    }
+
+    &.off {
+        animation: ${downRotate} .3s linear forwards;
+    }
 `;
 
 const TableSortButton = () => {
